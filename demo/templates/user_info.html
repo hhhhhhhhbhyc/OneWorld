@@ -1,0 +1,89 @@
+{% extends 'homebase.html' %}
+
+{% block css %}
+<script>
+    window.onload = function(){
+    var s1 = document.getElementById("s4");
+    s1.style.color = "rgba(55,254,253)";
+    }
+</script>
+{% endblock css %}
+
+
+{% block special %}
+
+{% if passworderror %}
+<button id="passworderror" style="margin-left:450px;margin-top:20px;opacity:0.8;" class="btn btn-danger">{{passworderror}}</button>
+<script>
+
+setTimeout(function(){document.getElementById("passworderror").style.display="none";},3000);
+
+</script>
+{% endif %}
+
+<div style="float:left;">
+<ul class="list-group" style="margin-left:250px;margin-top:130px;text-align:center;width:600px;">
+  <li class="list-group-item list-group-item-info" style="background-color:transparent;border:0;background:rgba(55,254,253,0.3);text-align: left;"><span style="color:#ffffff;opacity:1;font-size:18px;letter-spacing:5px;">账户信息</span></li>
+  <li class="list-group-item" style="background-color:#000000;opacity:0.8;color:#ffffff;">用户名:{{ user.name }}</li>
+  <li class="list-group-item" style="background-color:#000000;opacity:0.8;color:#ffffff;">地址:{{ user.address }}</li>
+  <li class="list-group-item" style="background-color:#000000;opacity:0.8;color:#ffffff;">联系人:{{ user.linkman }}</li>
+  <li class="list-group-item" style="background-color:#000000;opacity:0.8;color:#ffffff;">联系电话:{{ user.phone_number }}</li>
+</ul>
+
+<!--<a role="button" class="btn btn-success btn-lg" href="{% url 'user:edit_info' user.id %}" style="margin-left:600px;margin-top:20px;">修改信息</a>-->
+
+<div style="margin-left:600px;margin-top:20px;">
+    <a role="button" class="btn btn-success btn-lg" style="text-align:center;margin:45px;background-color:transparent;border:0;background:rgba(55,254,253,0.5);"
+        data-toggle="modal" data-target="#myModal2">修改信息</a>
+<!--href="{% url 'material:add_new' %}"-->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×
+				</button>
+				<h4 class="modal-title" id="myModalLabel2" style="text-align:center;">
+					修改信息需要输入密码
+				</h4>
+			</div>
+
+			<div class="modal-body">
+<form id="form2" role="form" method="post" action="{% url 'user:test_password' user.id %}">
+    {% csrf_token %}
+    <div class="form-group">
+                    <label for="password_first">账户密码:</label>
+                    <input type="password" name="password_first" id="password_first" class="form-control" maxlength="30" required placeholder="请输入账户密码"/>
+                    </div>
+
+</form>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger btn-lg"
+						data-dismiss="modal">
+					<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+				</button>
+				<button type="button" class="btn btn-info btn-lg" onclick="submit2()">
+					<span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+
+<script>
+    function submit2()
+    {
+
+   document.getElementById("form2").submit();
+    }
+</script>
+
+
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+</div>
+</div>
+{% endblock special %}

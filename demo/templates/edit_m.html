@@ -1,0 +1,80 @@
+{% extends 'homebase.html' %}
+
+{% block css %}
+<script>
+    window.onload = function(){
+    var s1 = document.getElementById("s1");
+    s1.style.color = "rgba(55,254,253)";
+    }
+</script>
+{% endblock css %}
+
+
+{% block special %}
+
+
+<form method="post" action="{% url 'material:edit_m' edit_id %}" role="form" style="float:left;margin-top:60px;padding-bottom:20px;margin-left:200px;">
+    {% csrf_token %}
+
+
+<div style="float:left;">
+    <div class="form-group" style="text-align:center;letter-spacing:5px;font-size:15px;background-color:transparent;border:0;background:rgba(55,254,253,0.3);text-align:left;color:#ffffff;opacity:1;">
+        <label for="id1_mname" style="margin-left:5px;">物资名称</label>
+    <input type="text" name="mname" value="{{ form.mname.value }}" maxlength="30" required="" id="id1_mname" class="form-control" style="text-align:center;border:0;background-color:transparent;background:rgba(0,0,0,0.8);color:#ffffff;opacity:1;">
+    </div>
+
+     <div class="form-group" style="text-align:center;letter-spacing:5px;font-size:15px;background-color:transparent;border:0;background:rgba(55,254,253,0.3);text-align:left;color:#ffffff;opacity:1;">
+         <label for="id1_type" style="margin-left:5px;">物资类型</label>
+    <select name="type" required="" id="id1_type" class="form-control" style="text-align:center;border:0;letter-spacing:5px;font-size:15px;background-color:transparent;background:rgba(0,0,0,0.8);color:#ffffff;opacity:1;">
+  <option value="" hidden></option>
+
+  <option value="口罩">口罩</option>
+
+  <option value="防护服">防护服</option>
+
+  <option value="护目镜">护目镜</option>
+
+  <option value="呼吸机">呼吸机</option>
+
+  <option value="血袋">血袋</option>
+
+  <option value="药品">药品</option>
+
+</select>
+    </div>
+
+    <div class="form-group" style="text-align:center;letter-spacing:5px;font-size:15px;background-color:transparent;border:0;background:rgba(55,254,253,0.3);text-align:left;color:#ffffff;opacity:1;">
+        <label for="id1_number" style="margin-left:5px;">数量</label>
+    <input type="number" name="number" value="{{ form.number.value }}" min="0" required="" id="id1_number" class="form-control" style="text-align:center;border:0;background-color:transparent;background:rgba(0,0,0,0.8);color:#ffffff;opacity:1;">
+    </div>
+
+</div>
+
+    <div style="float:left;margin-left:50px;">
+    <div class="form-group" style="text-align:center;letter-spacing:5px;font-size:15px;background-color:transparent;border:0;background:rgba(55,254,253,0.3);text-align:left;color:#ffffff;opacity:1;">
+        <label for="id1_x1" style="margin-left:5px;">当前患者人数</label>
+    <input type="number" name="x1" min="0" required="" id="id1_x1" value="{{ form.x1.value }}" class="form-control" style="text-align:center;border:0;background-color:transparent;background:rgba(0,0,0,0.8);color:#ffffff;opacity:1;">
+    </div>
+
+    <div class="form-group" style="text-align:center;letter-spacing:5px;font-size:15px;background-color:transparent;border:0;background:rgba(55,254,253,0.3);text-align:left;color:#ffffff;opacity:1;">
+        <label for="id1_x2" style="margin-left:5px;">当前医护人数</label>
+    <input type="number" name="x2" min="0" required="" id="id1_x2" value="{{ form.x2.value }}" class="form-control" style="text-align:center;border:0;background-color:transparent;background:rgba(0,0,0,0.8);color:#ffffff;opacity:1;">
+    </div>
+
+    <div class="form-group" style="text-align:center;letter-spacing:5px;font-size:15px;background-color:transparent;border:0;background:rgba(55,254,253,0.3);text-align:left;color:#ffffff;opacity:1;">
+        <label for="id1_x3" style="margin-left:5px;">紧急日期天数</label>
+    <input type="number" name="x3" value="{{ form.x3.value }}" min="0" required="" id="id1_x3" class="form-control" style="text-align:center;border:0;background-color:transparent;background:rgba(0,0,0,0.8);color:#ffffff;opacity:1;">
+    </div>
+    </div>
+
+    <div class="form-group" style="float:left;margin-left:0px;clear:both;text-align:center;letter-spacing:5px;font-size:15px;background-color:transparent;border:0;background:rgba(55,254,253,0.3);text-align:left;color:#ffffff;opacity:1;">
+        <label for="id1_postscript" style="margin-left:5px;">备注</label>
+    <textarea name="postscript" cols="40" rows="10" maxlength="100" required="" id="id1_postscript" class="form-control" style="width:450px;border:0;background-color:transparent;background:rgba(0,0,0,0.8);color:#ffffff;opacity:1;">{{ form.postscript.value }}</textarea>
+    </div>
+
+    <button type="submit" class="btn btn-info" style="margin-left:100px;float:left;clear:left;border:0;background-color:transparent;background:rgba(55,254,253,0.5);color:#ffffff;opacity:1;"/>重新发布</button>
+    <a role="button" href="{% url 'user:home' %}" class="btn btn-danger" style="margin-left:100px;float:left;">返回</a>
+</form>
+
+
+{% endblock special %}

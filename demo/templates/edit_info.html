@@ -1,0 +1,172 @@
+{% extends 'homebase.html' %}
+
+{% block css %}
+<script>
+    window.onload = function(){
+    var s1 = document.getElementById("s4");
+    s1.style.color = "rgba(55,254,253)";
+    }
+</script>
+{% endblock css %}
+
+
+{% block special %}
+
+<!--<div style="width:200px;height:650px;background-color:#F8F8F8;float:left;margin-left:0;">-->
+<!--    <a role="button" class="btn btn-success btn-lg" style="text-align:center;margin:45px;"-->
+<!--        data-toggle="modal" data-target="#myModal">发布新需求</a>-->
+<!--&lt;!&ndash;href="{% url 'material:add_new' %}"&ndash;&gt;-->
+<!--    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
+<!--	<div class="modal-dialog">-->
+<!--		<div class="modal-content">-->
+
+<!--			<div class="modal-header">-->
+<!--				<button type="button" class="close" data-dismiss="modal"-->
+<!--						aria-hidden="true">×-->
+<!--				</button>-->
+<!--				<h4 class="modal-title" id="myModalLabel">-->
+<!--					发布新需求-->
+<!--				</h4>-->
+<!--			</div>-->
+
+<!--			<div class="modal-body">-->
+<!--				<form id="form1" role="form" method="post" action="{% url 'material:add_new' %}">-->
+<!--                    {% csrf_token %}-->
+<!--                    <div class="form-group">-->
+<!--                    <label for="id_mname">物资名称:</label>-->
+<!--                    <input type="text" name="mname" id="id_mname" class="form-control" maxlength="30" required placeholder="请输入物资名称"/>-->
+<!--                    </div>-->
+
+<!--                    <div class="form-group">-->
+<!--                    <label for="id_type">物资类型:</label>-->
+<!--                    <select name="type" required="" id="id_type" class="form-control">-->
+<!--  <option value="" selected="" hidden></option>-->
+<!--  <option value="口罩">口罩</option>-->
+<!--  <option value="防护服">防护服</option>-->
+<!--  <option value="护目镜">护目镜</option>-->
+<!--  <option value="呼吸机">呼吸机</option>-->
+<!--  <option value="血袋">血袋</option>-->
+<!--  <option value="药品">药品</option>-->
+<!--                    </select>-->
+<!--                    </div>-->
+
+<!--    <div class="form-group">-->
+<!--    <label for="id_number">数量</label>-->
+<!--    <input type="number" name="number" min="0" required="" id="id_number" class="form-control">-->
+<!--    </div>-->
+
+<!--    <div class="form-group">-->
+<!--        <label for="id_x1">当前患者人数</label>-->
+<!--    <input type="number" name="x1" min="0" required="" id="id_x1" class="form-control">-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--        <label for="id_x2">当前医护人数</label>-->
+<!--    <input type="number" name="x2" min="0" required="" id="id_x2" class="form-control">-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--                        <label for="id_x3">紧急日期天数</label>-->
+<!--    <input type="number" name="x3" min="0" required="" id="id_x3" class="form-control">-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--        <label for="id_postscript">备注</label>-->
+<!--    <textarea name="postscript" cols="40" rows="10" maxlength="100" required="" id="id_postscript" class="form-control"></textarea>-->
+<!--    </div>-->
+
+<!--            </form>-->
+<!--			</div>-->
+
+<!--			<div class="modal-footer">-->
+<!--				<button type="button" class="btn btn-default"-->
+<!--						data-dismiss="modal">关闭-->
+<!--				</button>-->
+
+<!--				<button type="button" class="btn btn-primary" onclick="submit1()">-->
+<!--					发布需求-->
+<!--				</button>-->
+<!--			</div>-->
+<!--		</div>&lt;!&ndash; /.modal-content &ndash;&gt;-->
+
+<!--<script>-->
+<!--    function submit1()-->
+<!--    {-->
+
+<!--   document.getElementById("form1").submit();-->
+<!--    }-->
+<!--</script>-->
+
+
+<!--	</div>&lt;!&ndash; /.modal-dialog &ndash;&gt;-->
+<!--</div>&lt;!&ndash; /.modal &ndash;&gt;-->
+
+<!--<ul class="list-group" style="margin:20px;">-->
+<!--    <li class="list-group-item"><a href="{% url 'user:home' %}">发布管理</a></li>-->
+<!--    <li class="list-group-item">消息中心</li>-->
+<!--    <li class="list-group-item">数据统计</li>-->
+<!--    <li class="list-group-item"><a href="{% url 'user:edit_info' user.id %}">账户信息</a></li>-->
+<!--</ul>-->
+<!--</div>-->
+
+
+<div style="float:left;margin-left:200px;margin-top:70px;">
+    <form method="post" action="{% url 'user:edit_info' user.id %}" role="form">
+    {% csrf_token %}
+        <div style="float:left;">
+    <div class="form-group">
+        <label for="id_name">用户名:</label>
+        <input type="text" name="name" maxlength="20" required="" id="id_name" class="form-control" value="{{ user.name }}" placeholder="{{ user.name }}">
+</div>
+    <div class="form-group">
+        <label for="id_password">修改密码:</label>
+        <input type="password" name="password" maxlength="256" required="" id="id_password" class="form-control">
+
+    </div>
+    <div class="form-group">
+        <label for="id_password2">确认密码:</label>
+        <input type="password" name="password2" maxlength="256" required="" id="id_password2" class="form-control">
+
+    </div>
+        </div>
+         <div style="float:left;margin-left:50px;">
+    <div class="form-group">
+        <label for="id_phone_number">联系电话:</label>
+        <input type="text" name="phone_number" maxlength="12" required="" id="id_phone_number" class="form-control" value="{{ user.phone_number }}">
+
+    </div>
+
+    <script src="/static/plugins/js/address.js"></script>
+
+    <div class="form-group">
+    <label>地址:</label>
+     <select name="province" id="province" onChange="set_city()" class="form-control">
+    <option value="none">选择省</option>
+<script>
+  for(var i=0;i<provinceArr.length;i++){
+  document.write('<option value="'+i+'">'+provinceArr[i]+'</option>');
+  }
+</script>
+    </select>
+    <select name="city" id="city" class="form-control">
+    <option value="none">选择城市</option>
+    </select>
+    </div>
+
+   <div class="form-group">
+        <label for="id_linkman">联系人:</label>
+        <input type="text" name="linkman" maxlength="5" required="" id="id_linkman" class="form-control" value="{{ user.linkman }}">
+
+    </div>
+</div>
+   <div class="form-group">
+        <label for="id_is_hospital">是否为医院:</label>
+        <input type="checkbox" name="is_hospital" id="id_is_hospital" checked="" class="form-control"value="{{ user.is_hospital }}">
+
+    </div>
+
+   <button type="submit" class="btn btn-info btn-lg" style="margin-left:100px;margin-top:30px;">提交</button>
+   <a role="button" href="{% url 'user:user_info' user.id  %}" class="btn btn-danger btn-lg" style="margin-left:70px;margin-top:30px;">返回</a>
+</form>
+
+</div>
+
+
+{% endblock special %}

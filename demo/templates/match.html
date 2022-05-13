@@ -1,0 +1,55 @@
+{% extends 'homebase.html' %}
+
+{% block css %}
+<script>
+    window.onload = function(){
+    var s1 = document.getElementById("s1");
+    s1.style.color = "rgba(55,254,253)";
+    }
+</script>
+
+<link rel="stylesheet" href="/static/plugins/fontawesome/css/font-awesome.min.css">
+{% endblock css %}
+
+
+
+{% block special %}
+
+<div style="float:left;margin-left:100px;margin-top:100px;text-align:center;">
+    <a role="button" class="btn btn-info btn-lg" href="{% url 'user:home' %}" style="float:left;border:0;background-color:transparent;background:rgba(55,254,253,0.5);color:#ffffff;opacity:1;">返回</a>
+
+
+    <div class="panel panel-info" style="float:left;margin-left:50px;width:400px;background-color:transparent;border:0;">
+  <div class="panel-heading" style="background:rgba(55,254,253,0.3);color:#ffffff;opacity:1;text-align: left;"><h4>匹配详情</h4></div>
+  <div class="panel-body" style="background:rgba(0,0,0,0.8);border:0;">
+      <ul class="list-group">
+          <li class="list-group-item" style="background-color:transparent;border:0;color:#ffffff;opacity:1;">单位名称:{{ otherobj.name }}</li>
+          <li class="list-group-item" style="background-color:transparent;border-left-width:0;border-right-width:0;color:#ffffff;opacity:1;">联系电话:{{ otherobj.phone_number }}</li>
+          <li class="list-group-item" style="background-color:transparent;border-left-width:0;border-right-width:0;color:#ffffff;opacity:1;">地址:{{ otherobj.address }}</li>
+          <li class="list-group-item" style="background-color:transparent;border-left-width:0;border-right-width:0;color:#ffffff;opacity:1;">联系人:{{ otherobj.linkman }}</li>
+      </ul>
+
+  </div>
+</div>
+
+    <div class="panel panel-info" style="float:left;margin-left:50px;width:400px;background-color:transparent;border:0;">
+  <div class="panel-heading" style="background:rgba(55,254,253,0.3);color:#ffffff;opacity:1;text-align: left;"><h4>匹配物资情况</h4></div>
+  <div class="panel-body" style="background:rgba(0,0,0,0.8);border:0;">
+      <ul class="list-group">
+          <li class="list-group-item" style="background-color:transparent;border:0;color:#ffffff;opacity:1;">物资名称:{{ othermobj.mname }}</li>
+          <li class="list-group-item" style="background-color:transparent;border-left-width:0;border-right-width:0;color:#ffffff;opacity:1;">物资数量:{{ othermobj.number }}</li>
+          <li class="list-group-item" style="background-color:transparent;border-left-width:0;border-right-width:0;color:#ffffff;opacity:1;">物资类型:{{ othermobj.type }}</li>
+          <li class="list-group-item" style="background-color:transparent;border-left-width:0;border-right-width:0;color:#ffffff;opacity:1;">备注:{{ othermobj.postscript|slice:"0:20" }}...</li>
+      </ul>
+  </div>
+</div>
+</div>
+<div><a role="button" class="btn btn-danger btn-lg" href="{% url 'material:rematch' othermobj.match_id %}" style="margin-left:585px;margin-top:20px;">重新匹配</a></div>
+<i class="fa fa-angle-double-down fa-4x" aria-hidden="true" style="margin-top:20px;color:#ffffff;margin-left:620px;float:left;"></i>
+<div style="margin-left:550px;color:#ffffff;font-size:18px;letter-spacing:6px;float:left;"> 下拉见路径规划  </div>
+<div style="float:left;clear:both;overflow:hidden;width:920px;height:520px;margin-left:400px;margin-top:0;margin-bottom:0;background-color:transparent;background:rgba(0,0,0,0.8);color:#ffffff;opacity:1;">
+    <iframe src="{% url 'pathdraw' othermobj.match_id %}" frameborder="0" width="1000" height="550"></iframe>
+</div>
+
+
+{% endblock special %}

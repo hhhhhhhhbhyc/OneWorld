@@ -1,0 +1,50 @@
+{% extends 'homebase.html' %}
+
+{% block css %}
+<script>
+    window.onload = function(){
+    var s1 = document.getElementById("s2");
+    s1.style.color = "rgba(55,254,253)";
+    }
+</script>
+{% endblock css %}
+
+
+{% block special %}
+
+<div class="panel panel-info" style="float:left;background-color:transparent;border:0;margin-left:150px;margin-top:100px;text-align:center;width:1000px;">
+  <div class="panel-heading" style="background:rgba(55,254,253,0.3);text-align:left;"><h4 style="color:#ffffff;opacity:1;letter-spacing:5px;">消息中心(已匹配)</h4></div>
+  <div class="panel-body" style="background:rgba(0,0,0,0.8)">
+     <table class="table" style="text-align:center;color:#ffffff;opacity:1;">
+        <tr>
+            <th style="text-align:center;">名称</th>
+            <th style="text-align:center;">数量</th>
+            <th style="text-align:center;">匹配物资名称</th>
+            <th style="text-align:center;">匹配物资数量</th>
+            <th style="text-align:center;">匹配物资单位</th>
+            <th style="text-align:center;">匹配物资地址</th>
+            <th style="text-align:center;">匹配物资联系人</th>
+            <th style="text-align:center;">匹配物资联系电话</th>
+        </tr>
+        {% for i,j in bag %}
+        <tr>
+            <td>{{ i.mname }}</td>
+            <td>{{ i.number }}</td>
+            <td>{{ j.mname }}</td>
+            <td>{{ j.number }}</td>
+            <td>{{ j.user.name }}</td>
+            <td>{{ j.user.address }}</td>
+            <td>{{ j.user.linkman }}</td>
+            <td>{{ j.user.phone_number }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+  </div>
+</div>
+
+
+
+
+
+
+{% endblock special %}

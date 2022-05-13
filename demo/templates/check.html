@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block special %}
+<div style="margin-left:0px;padding-top:130px;margin-bottom:0px;height:800px;background-image:url('/static/images/background1.png');background-repeat:no-repeat;background-attachment:fixed;">
+    <a href="{% url 'index' %}" role="button" class="btn btn-info btn-lg" style="margin-top:50px;margin-left:250px;float:left;background-color:transparent;border:0;background:rgba(55,254,253,0.5)">返回</a>
+        <a href="{% url 'material:check' last_id %}" role="button" class="btn btn-info btn-lg" style="margin-top:40px;margin-left:250px;float:left;margin-bottom:10px;background-color:transparent;border:0;background:rgba(55,254,253,0.5)">上一个</a>
+    <a href="{% url 'material:check' next_id %}" role="button" class="btn btn-info btn-lg" style="margin-top:40px;margin-left:150px;float:left;margin-bottom:10px;background-color:transparent;border:0;background:rgba(55,254,253,0.5)">下一个</a>
+
+    <ul class="list-group" style="margin-top:30px;text-align:center;float:left;clear:both;margin-left:400px;width:700px;">
+    <li class="list-group-item list-group-item-default" style="background-color:transparent;border:0;background:rgba(55,254,253,0.3);color:#ffffff;">
+        单位名称:{{ detail.user.name }}
+        {% if detail.is_match == True %}
+        <span class="badge" style="background-color:#33CC33;"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></span>
+        {% else  %}
+        <span class="badge" style="background-color:#FF9933;"><span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span></span>
+        {%  endif %}
+    </li>
+    <li class="list-group-item list-group-item" style="background:rgba(0,0,0,0.8);color:#ffffff;opacity:1;border:0;">
+        地址:{{detail.user.address}}
+    </li>
+    <li class="list-group-item list-group-item" style="background:rgba(0,0,0,0.8);color:#ffffff;opacity:1;border-left-width:0;border-right-width:0;">
+        联系电话:{{ detail.user.phone_number }}
+    </li>
+    <li class="list-group-item list-group-item" style="background:rgba(0,0,0,0.8);color:#ffffff;opacity:1;border-left-width:0;border-right-width:0;">
+        联系人姓名:{{ detail.user.linkman }}
+    </li>
+    <li class="list-group-item list-group-item" style="background:rgba(0,0,0,0.8);color:#ffffff;opacity:1;border-left-width:0;border-right-width:0;">
+        物资名称:{{ detail.mname }}
+    </li>
+    <li class="list-group-item list-group-item" style="background:rgba(0,0,0,0.8);color:#ffffff;opacity:1;border-left-width:0;border-right-width:0;">
+        物资类别:{{ detail.type }}
+    </li>
+     <li class="list-group-item list-group-item" style="background:rgba(0,0,0,0.8);color:#ffffff;opacity:1;border-left-width:0;border-right-width:0;">
+        数量:{{ detail.number }}
+    </li>
+    <li class="list-group-item list-group-item" style="background:rgba(0,0,0,0.8);color:#ffffff;opacity:1;border-left-width:0;border-right-width:0;">
+        日期:{{detail.add_date}}
+    </li>
+     <li class="list-group-item list-group-item" style="background:rgba(0,0,0,0.8);color:#ffffff;opacity:1;border-left-width:0;border-right-width:0;">
+        备注:{{ detail.postscript }}
+    </li>
+</ul>
+
+</div>
+{% endblock special %}

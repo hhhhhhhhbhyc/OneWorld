@@ -1,0 +1,101 @@
+{% extends 'homebase.html' %}
+
+{% block css %}
+<script>
+    window.onload = function(){
+    var s1 = document.getElementById("s1");
+    s1.style.color = "rgba(55,254,253)";
+    }
+</script>
+{% endblock css %}
+
+{% block special %}
+{% if errors %}
+<button id="errors" style="margin-left:450px;margin-top:20px;opacity:0.8;" class="btn btn-danger">{{errors}}</button>
+<script>
+
+setTimeout(function(){document.getElementById("errors").style.display="none";},3000);
+
+</script>
+{% endif %}
+
+
+<div class="panel panel-info" style="float:left;margin-top:50px;margin-left:200px;background-color:transparent;border:0;">
+  <div class="panel-heading" style="background:rgba(55,254,253,0.3);text-align:center;">
+    <h3 class="panel-title" style="color:#ffffff;opacity:1;text-align:left;letter-spacing:5px;font-size:18px;">发布管理</h3>
+  </div>
+  <div class="panel-body" style="background:rgba(0,0,0,0.8)">
+    <table class="table" style="margin-top:0px;margin-left:5px;overflow:scroll;text-align:center;color:#ffffff;opacity:1;">
+    {% if is_hospital %}
+
+    <tr>
+        <th style="text-align:center;">是否匹配</th>
+        <th style="text-align:center;">物资名称</th>
+        <th style="text-align:center;">物资类型</th>
+        <th style="text-align:center;">数量</th>
+        <th style="text-align:center;">当前患者人数</th>
+        <th style="text-align:center;">当前医护人数</th>
+        <th style="text-align:center;">紧急截止日期</th>
+        <th style="text-align:center;">日期</th>
+        <th style="text-align:center;">详情</th>
+    </tr>
+    {% for m in material %}
+    <tr>
+        {% if m.is_match == True %}
+        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="color:#33CC33;"></span></td>
+        {% else %}
+        <td><span class="glyphicon glyphicon-time" aria-hidden="true" style="color:#FF9933;"></span></td>
+        {% endif %}
+        <td>{{m.mname}}</td>
+        <td>{{ m.type }}</td>
+        <td>{{m.number}}</td>
+        <td>{{m.x1}}</td>
+        <td>{{m.x2}}</td>
+        <td>{{m.x3}}</td>
+        <td>{{m.add_date}}</td>
+        {% if m.is_match == False %}
+        <td><a href="{% url 'material:edit_m' m.id %}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>编辑</a></td>
+        {% else %}
+        <td><a href="{% url 'material:match' m.id %}"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>查看</a></td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+
+    {% else %}
+	<div style="width:800px;">
+    <tr>
+        <th style="text-align:center;">是否匹配</th>
+        <th style="text-align:center;">物资名称</th>
+        <th style="text-align:center;">物资类型</th>
+        <th style="text-align:center;">数量</th>
+        <th style="text-align:center;">日期</th>
+        <th style="text-align:center;">详情</th>
+    </tr>
+    {% for m in material %}
+    <tr>
+        {% if m.is_match == True %}
+        <td><span class="glyphicon glyphicon-ok" aria-hidden="true" style="color:#33CC33;"></span></td>
+        {% else %}
+        <td><span class="glyphicon glyphicon-time" aria-hidden="true" style="color:#FF9933;"></span></td>
+        {% endif %}
+        <td>{{m.mname}}</td>
+        <td>{{ m.type }}</td>
+        <td>{{m.number}}</td>
+        <td>{{m.add_date}}</td>
+        {% if m.is_match == False %}
+        <td><a href="{% url 'material:edit_m' m.id %}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>编辑</a></td>
+        {% else %}
+        <td><a href="{% url 'material:match' m.id %}"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>查看</a></td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+	</div>
+
+    {% endif %}
+</table>
+  </div>
+</div>
+
+
+
+{% endblock special %}

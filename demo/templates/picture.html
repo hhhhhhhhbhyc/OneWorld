@@ -1,0 +1,17 @@
+{% extends 'homebase.html' %}
+
+{% block css %}
+<script>
+    window.onload = function(){
+    var s1 = document.getElementById("s3");
+    s1.style.color = "rgba(55,254,253)";
+    }
+</script>
+{% endblock css %}
+
+
+{% block special %}
+<div style="float:left;overflow:hidden;margin-top:20px;background:rgba(0,0,0,0.8);margin-left:20px;height:700px;">
+<iframe src="{% url 'picture' %}" frameborder="0" width="1200" height="800"></iframe>
+</div>
+{% endblock special %}

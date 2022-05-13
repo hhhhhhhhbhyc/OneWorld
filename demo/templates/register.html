@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+
+
+{% block special %}
+<div style="background-image:url('/static/images/background1.png');margin:auto;padding-top:70px;">
+
+    <div class="panel panel-default" style="text-align:center;background-color:transparent;border:0px;width:750px;height:700px;margin:auto;
+padding-left:95px;padding-right:95px;padding-top:50px;padding-bottom:50px;">
+  <div class="panel-heading" style="border:0;background:rgba(55,254,253,0.3);text-align:left;color:#ffffff;opacity:1;font-size:20px;letter-spacing:5px;">用户注册</div>
+  <div class="panel-body" style="background:rgba(0,0,0,0.7);text-align:center;color:#ffffff;opacity:1;">
+
+
+      <form method="post" action="{% url 'user:register' %}" role="form">
+
+    {% csrf_token %}
+
+<div class="form-group" style="text-align:left;">
+        <label for="id_name">用户名:(若为医院打勾)</label>
+    <div class="row">
+    <div class="col-md-10" style="padding-right:0;">
+        <input type="text" name="name" maxlength="20" required="" id="id_name" class="form-control" style="border:0;background-color:transparent;background:rgba(256,256,256,0.6);color:#ffffff;opacity:1;">
+    </div>
+        <div class="col-md-2" style="padding-left:0;">
+        <input type="checkbox" name="is_hospital" id="id_is_hospital" checked="" class="form-control" style="margin-top:0;border:0;background-color:transparent;background:rgba(256,256,256,0.6);color:#ffffff;opacity:1;">
+        </div>
+    </div>
+</div>
+    <div class="form-group" style="text-align:left;">
+        <label for="id_password">密码:</label>
+        <input type="password" name="password" maxlength="256" required="" id="id_password" class="form-control" style="border:0;background-color:transparent;background:rgba(256,256,256,0.6);color:#ffffff;opacity:1;">
+
+    </div>
+    <div class="form-group" style="text-align:left;">
+        <label for="id_password2">确认密码:</label>
+        <input type="password" name="password2" maxlength="256" required="" id="id_password2" class="form-control" style="border:0;background-color:transparent;background:rgba(256,256,256,0.6);color:#ffffff;opacity:1;">
+
+    </div>
+    <div class="form-group" style="text-align:left;">
+        <label for="id_phone_number">联系电话:</label>
+        <input type="text" name="phone_number" maxlength="12" required="" id="id_phone_number" class="form-control" style="border:0;background-color:transparent;background:rgba(256,256,256,0.6);color:#ffffff;opacity:1;">
+
+    </div>
+
+    <script src="/static/plugins/js/address.js"></script>
+
+    <div class="form-group" style="text-align:left;">
+    <label>地址:</label>
+     <select name="province" id="province" onChange="set_city()" class="form-control" style="border:0;background-color:transparent;background:rgba(256,256,256,0.6);color:#ffffff;opacity:1;">
+    <option value="none" style="">选择省</option>
+<script>
+  for(var i=0;i<provinceArr.length;i++){
+  document.write('<option style="background:rgba(256,256,256,256,0.6);color:#000000;" value="'+i+'">'+provinceArr[i]+'</option>');
+  }
+</script>
+    </select>
+
+    <select name="city" id="city" class="form-control" style="border:0;background-color:transparent;background:rgba(256,256,256,0.6);color:#ffffff;opacity:1;">
+    <option value="none" style="">选择城市</option>
+    </select>
+    </div>
+
+   <div class="form-group" style="text-align:left;">
+        <label for="id_linkman">联系人:</label>
+        <input type="text" name="linkman" maxlength="5" required="" id="id_linkman" class="form-control" style="border:0;background-color:transparent;background:rgba(256,256,256,0.6);color:#ffffff;opacity:1;">
+
+    </div>
+
+
+    <button type="submit" class="btn btn-info btn-lg" style="border:0;background:rgba(55,254,253,0.5);text-align:center;color:#ffffff;opacity:1;">提交</button>{{msg}}
+</form>
+
+
+
+  </div>
+    </div>
+
+</div>
+
+
+{% endblock special %}
+
